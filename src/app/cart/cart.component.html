@@ -1,0 +1,59 @@
+<div class="card mt-5 ">
+    <div class="row ">
+        <div class="col-md-9 cart">
+            <div class="title">
+                <div class="row d-flex">
+                    <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                    <span (click)="clearCart()" class="btn w-25 bg-warning text-dark">Clear Shopping Cart</span>
+                </div>
+            </div>
+
+            <h5 style="margin-left: 180px; display: inline;">Description</h5>
+            <h5 style="margin-left: 50px; display: inline;">Price</h5>
+            <h5 style="margin-left: 180px; display: inline;">quantity</h5>
+            <h5 style="margin-left: 130px; display: inline;">Total</h5>
+            <div class="row border-top border-bottom" *ngFor="let item of cartProducts ; let index = index">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img class="img-fluid" src="{{item.item.image}}"></div>
+                    <div class="col-2">
+                        <div class="row text-muted"><small>{{item.item.category}}</small> </div>
+                        <div class="row">{{item.item.title}}</div>
+                    </div>
+                    <div class="col-2">
+                        <div class="row">&euro;{{item.item.price}}</div>
+                    </div>
+                    <div class="col-3 ">
+                        <a class="me-2" style="cursor: pointer; font-size: 30px; text-decoration: none;" (click)="minusamount(index)" >-</a><input type="number "  value="{{item.quantity}}" class="w-50 text-center" min="1"><a style="cursor: pointer; font-size: 25px; text-decoration: none;"  class="ms-3" (click)="addamount(index)">+</a>
+                    </div>
+                    <div class="col-3">&euro; {{item.item.price*item.quantity}}<span style="cursor:pointer;" (click)="deleteProduct(index)" class=" p-2 ms-5"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></span></div>
+                </div>
+
+            </div>
+
+            <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+        </div>
+        <div class="col-md-3  summary">
+            <div><h5><b>Summary</b></h5></div>
+            <hr>
+            <div class="" >
+                <div class="col text-center" style="padding-left:0;">ITEMS {{items}}</div><br>
+                <div class="col text-center">Total &euro; {{total}}</div>
+            </div>
+            <form>
+                <p>SHIPPING</p>
+                <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
+                <p>GIVE CODE</p>
+                <input id="code" placeholder="Enter your code">
+            </form>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col">TOTAL PRICE</div>
+                <div class="col text-right">&euro;{{total + 5 }}</div>
+            </div>
+            <button (click)="addCart()" class="btn bg-warning text-dark">Place Order</button>
+            <p class="text-success">{{message}}</p>
+        </div>
+    </div>
+
+
+
+</div>
